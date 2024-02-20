@@ -24,6 +24,15 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '17'
+      - name: cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: build project
         run: ./gradlew build
       - name: upload artifact
@@ -33,7 +42,7 @@ jobs:
           path: build/libs/sampleproj0.1.jar
       - name: publish output
         id: publish-output
-        run: find build/libs/*0.1.jar -type -f -execdir echo 'publish-file={}' >> $GITHUB_OUTPUT ';'
+        run: find build/libs/*0.1.jar -type f -execdir echo 'publish-file={}' >> $GITHUB_OUTPUT ';'
   deploy:
     needs: build
     runs-on: ubuntu-latest
