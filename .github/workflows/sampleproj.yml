@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jar-file
-          path: build/libs/sampleproj0.1.jar
+          path: build/libs/sampleproj-0.1.jar
       - name: publish output
         id: publish-output
         run: find build/libs/*0.1.jar -type f -execdir echo 'publish-file={}' >> $GITHUB_OUTPUT ';'
