@@ -4,14 +4,12 @@ on:
     branches:
       - 'master'
       - 'develop'
-      - 'feature/**'
   pull_request:
     branches:
-      - 'master'
-      - 'develop'
       - 'feature/**'
     types:
-      - closed
+      - opened
+      - reopened
   workflow_dispatch:
 jobs:
   test:
