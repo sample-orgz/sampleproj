@@ -11,8 +11,12 @@ on:
     types:
       - closed
   workflow_dispatch:
+env:
+  SAMPLE_ENV_VALUE1: sample_env1
 jobs:
   build:
+    env:
+      SAMPLE_ENV_VALUE2: sample_env2
     runs-on: ubuntu-latest
     outputs:
       publish-file: ${{steps.publish-output.outputs.publish-file}}
