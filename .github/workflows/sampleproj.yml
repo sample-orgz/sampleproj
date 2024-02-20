@@ -2,14 +2,14 @@ name: first-workflow
 on:
   push:
     branches:
-      - 'master'
       - 'develop'
+      - 'feature/**'
+      - 'release/**'
   pull_request:
     branches:
       - 'feature/**'
     types:
-      - opened
-      - reopened
+      - closed
   workflow_dispatch:
 jobs:
   test:
