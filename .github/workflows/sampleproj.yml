@@ -24,6 +24,11 @@ jobs:
           java-version: '17'
       - name: build project
         run: ./gradlew build
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jar-file
+          path: build/libs/sampleproj.jar
   deploy:
     needs: build
     runs-on: ubuntu-latest
