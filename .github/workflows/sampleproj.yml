@@ -28,17 +28,12 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '17'
-      - name: cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          cache: 'gradle'
+          cache-dependency-path: |
+            sub-project/*.gradle*
+            sub-project/**/gradle-wrapper.properties
       - name: build project
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
