@@ -12,7 +12,7 @@ on:
       - closed
   workflow_dispatch:
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -24,3 +24,9 @@ jobs:
           java-version: '17'
       - name: build project
         run: ./gradlew build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Application Deployed
+        run: echo "${{github}}"
