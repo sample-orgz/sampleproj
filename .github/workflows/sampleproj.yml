@@ -1,0 +1,28 @@
+name: first-workflow
+on:
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+      - 'feature/**'
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+      - 'feature/**'
+    types:
+      - closed
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+      - name: build project
+        run: ./gradlew build
