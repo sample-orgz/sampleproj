@@ -18,7 +18,6 @@ public class SampleConfiguration {
 
     @Value("${SAMPLE_ENV_VALUE2}")
     private String env2;
-
     @Bean
     public void printEnvVariables() {
         log.info("the Workflow env variable is {}",env1);
